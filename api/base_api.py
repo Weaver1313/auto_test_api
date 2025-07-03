@@ -16,12 +16,16 @@ class BaseApi():
             }
         
 
-    def request(self, method,url_params, data=None, params=None, header=None ):
+    def request(self, method, url_params, data=None, params=None, header=None, use_default_headers=True):
         url = f'{self.URL}{url_params}'
-        merged_header = self.header.copy()
 
-        if header:
-            merged_header.update(header)
+        if use_default_headers:
+            merged_header = self.header.copy()
+            if header:
+                merged_header.update(header)
+        else:
+            merged_header = header or {}
+
 
         try:
             response = requests.request(
@@ -37,7 +41,7 @@ class BaseApi():
             self.status = response.status_code
 
             try:
-                self.res_body = response.json()
+                self.res_body = response.json() if response.content else None
 
             except json.JSONDecodeError:
                 self.res_body = response.text

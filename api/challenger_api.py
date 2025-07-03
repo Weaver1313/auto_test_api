@@ -10,10 +10,12 @@ class ChallengerApi(BaseApi):
         
 
     def create_x_challenger(self):
-        response = requests.post(f'{self.URL}/challenger')
-
+        response = self.request('post', '/challenger', header={}, use_default_headers=False)
+        # requests.post(f'{self.URL}/challenger')
+        
         self.status = response.status_code
         self.x_challenger = response.headers
+        
 
     def check_x_challenger(self): 
         assert 'X-Challenger' in self.x_challenger
