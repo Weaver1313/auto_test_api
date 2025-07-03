@@ -17,7 +17,7 @@ def test_get_challengers(app):
         app.challengers_api.get_challengers()
 
     with allure.step('Проверка на статус код'):
-        app.challengers_api.check_status_code_ok()
+        app.challengers_api.check_status_code(200)
 
     with allure.step('Проверка тело ответа'):
         app.challengers_api.validate_response_body()

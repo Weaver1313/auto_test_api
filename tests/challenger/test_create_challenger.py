@@ -16,7 +16,7 @@ def test_create_challenger(app):
         app.challenger_api.create_x_challenger()
 
     with allure.step('Проверка статус кода'):
-        app.challenger_api.check_status_code_ok()
+        app.challenger_api.check_status_code(201)
 
     with allure.step('Проверка есть ли в заголовках x-challenger'):
         app.challenger_api.check_x_challenger()

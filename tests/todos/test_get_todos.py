@@ -1,5 +1,7 @@
 import allure
 import pytest
+from schemas import todos_schema
+
 
 
 @pytest.mark.smoke
@@ -17,7 +19,7 @@ def test_get_all_todos(app):
         app.todos_api.get_todos()
 
     with allure.step('Проверка статус кода'):
-        app.todos_api.check_status_code_ok()
+        app.todos_api.check_status_code(200)
 
     with allure.step('Проверка тела ответа'):
         app.todos_api.validate_response_body()

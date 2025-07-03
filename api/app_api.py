@@ -7,7 +7,7 @@ class App():
     
 
     def __init__(self, challenger):
-        BaseApi(challenger)
+        self.base_api = BaseApi(challenger)
         self.challenger_api = ChallengerApi(challenger)
         self.challengers_api = ChallengersApi(challenger)
         self.todos_api = TodosApi(challenger)
