@@ -9,3 +9,10 @@ schema_response_body = Schema({
         Optional("description"): str
     }]
 })
+
+schema_create_todos = Schema({
+    Required('id'): int,
+    Required('title'): str,
+    Required('doneStatus'): bool,
+    Required('description'): str
+})

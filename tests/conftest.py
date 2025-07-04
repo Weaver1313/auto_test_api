@@ -12,6 +12,14 @@ def app(challenger):
 
 @pytest.fixture(scope='session')
 def challenger():
+    # создание токена
     response = requests.post(f'{config.URL}/challenger')
     x_challenger = response.headers['X-Challenger']
     return x_challenger
+
+
+@pytest.fixture()
+def create_todo(challenger):
+    response = requests.post(f'{config.URL}/todos',
+                             headers=challenger)
+    return response.json()
